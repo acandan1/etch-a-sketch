@@ -15,6 +15,13 @@ function makeRows(rows, cols) {
 
 makeRows(16, 16);
 
+function removeDivs() {
+    const elements = document.getElementsByClassName("grid-item");
+    while (elements.length > 0) {
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+}
+
 const button = document.getElementById('pop-up');
 
 function openForm() {
@@ -32,10 +39,13 @@ button.addEventListener('click', (event) => {
 
 const applyButton = document.getElementById("btn");
 applyButton.addEventListener('click', (event) => {
+    event.preventDefault();
     console.log("hey");
     let inputValue = document.getElementById("inputVal").value;
     if (inputValue <= 100 && inputValue >= 1) {
+        removeDivs();
         makeRows(inputValue, inputValue);
+        closeForm();
     }
 });
 
